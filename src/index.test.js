@@ -92,13 +92,13 @@ describe('User Class', () => {
               will receive 160 progress, resulting in the user being upgraded
               to rank -7 and having earned 60 progress towards their next rank`, () => {
       describe('progress', () => {
-        it('should be 100 when rank is -8', () => {
+        it('should be 60', () => {
           user.incProgress(-4);
           expect(user.progress).to.be.equal(60);
         });
       });
       describe('rank', () => {
-        it('should be 100 when rank is -8', () => {
+        it('should be -7', () => {
           user.incProgress(-4);
           expect(user.rank).to.be.equal(-7);
         });
@@ -156,16 +156,28 @@ describe('User Class', () => {
       });
     });
   });
-  describe('Test rank before zero', () => {
+  describe('If a user ranked 1 completes an activity ranked -1 they will receive 1 progress', () => {
     beforeEach(() => {
       user.rank = 1;
-      user.progress = 20;
       user.incProgress(-1);
     });
     describe('progress', () => {
-      it('should be 21', () => {
-        expect(user.progress).to.be.equal(21);
+      it('should be 1', () => {
+        expect(user.progress).to.be.equal(1);
       });
+    });
+  });
+  describe(`The only acceptable range of rank values is
+            -8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8.
+            Any other value should raise an error.`, () => {
+    it('should raise an error if value is -9', () => {
+      expect(() => user.incProgress(-9)).to.throw(Error);
+    });
+    it('should raise an error if value is 9', () => {
+      expect(() => user.incProgress(9)).to.throw(Error);
+    });
+    it('should raise an error if value is 0', () => {
+      expect(() => user.incProgress(0)).to.throw(Error);
     });
   });
 });
