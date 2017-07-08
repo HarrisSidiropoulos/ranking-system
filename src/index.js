@@ -1,14 +1,15 @@
+/* eslint-disable class-methods-use-this, no-console */
 // TODO: create the User class/object
 // it must support rank, progress and the incProgress(rank) method
 
 class User {
-  rank () {
+  rank() {
 
   }
-  progress () {
+  progress() {
 
   }
-  incProgress (rank) {
+  incProgress(rank) {
     return rank;
   }
 }
