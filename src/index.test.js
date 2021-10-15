@@ -1,6 +1,7 @@
-import { expect } from 'chai';
-import User from './index';
+import { expect } from "chai"
+import User from "./index"
 
+import * as index from "./index"
 describe('User Class', () => {
   const user = new User();
   beforeEach(() => {
@@ -181,3 +182,60 @@ describe('User Class', () => {
     });
   });
 });
+
+// @ponicode
+describe("incProgress", () => {
+    let inst
+
+    beforeEach(() => {
+        inst = new index.default()
+    })
+
+    test("0", () => {
+        let callFunction = () => {
+            inst.incProgress(80)
+        }
+    
+        expect(callFunction).not.toThrow()
+    })
+
+    test("1", () => {
+        let callFunction = () => {
+            inst.incProgress(10)
+        }
+    
+        expect(callFunction).not.toThrow()
+    })
+
+    test("2", () => {
+        let callFunction = () => {
+            inst.incProgress(0)
+        }
+    
+        expect(callFunction).not.toThrow()
+    })
+
+    test("3", () => {
+        let callFunction = () => {
+            inst.incProgress(1)
+        }
+    
+        expect(callFunction).not.toThrow()
+    })
+
+    test("4", () => {
+        let callFunction = () => {
+            inst.incProgress(-10)
+        }
+    
+        expect(callFunction).not.toThrow()
+    })
+
+    test("5", () => {
+        let callFunction = () => {
+            inst.incProgress(Infinity)
+        }
+    
+        expect(callFunction).not.toThrow()
+    })
+})
